@@ -16,7 +16,7 @@ public class MineGameEngine {
     public int numMines;
     public int minesLeft;
 
-
+    // initialize a game
     public void init(int rows, int cols, int numMines) {
         this.numMines = numMines;
         minesLeft = numMines;
