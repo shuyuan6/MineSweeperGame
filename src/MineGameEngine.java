@@ -163,61 +163,70 @@ public class MineGameEngine {
         Queue<Integer> q = new LinkedList<>();
         q.add(r);
         q.add(c);
-        //System.out.println("Now adding: " + r + ", " + c);
+        blocks[r][c].isRevealed = true;
+        System.out.println("Now adding: " + r + ", " + c);
 
         while (!q.isEmpty()) {
             int row = q.remove();
             int col = q.remove();
-            blocks[row][col].isRevealed = true;
+
 
             if (blocks[row][col].type == 0) {
                 // up
                 if (row - 1 >= 0 && !blocks[row-1][col].isRevealed){
                     q.add(row - 1);
                     q.add(col);
-                    //System.out.println("Now adding: " + (row-1) + ", " + col);
+                    blocks[row-1][col].isRevealed = true;
+                    System.out.println("Now adding: " + (row-1) + ", " + col);
                 }
                 // up left
                 if (row - 1 >= 0 && col - 1 >= 0 && !blocks[row-1][col-1].isRevealed) {
                     q.add(row - 1);
                     q.add(col - 1);
-                    //System.out.println("Now adding: " + (row-1) + ", " + (col-1));
+                    blocks[row-1][col-1].isRevealed = true;
+                    System.out.println("Now adding: " + (row-1) + ", " + (col-1));
                 }
                 // up right
                 if (row - 1 >= 0 && col + 1 < blocks[row].length && !blocks[row-1][col + 1].isRevealed) {
                     q.add(row - 1);
                     q.add(col + 1);
-                    //System.out.println("Now adding: " + (row-1) + ", " + (col+1));
+                    blocks[row-1][col+1].isRevealed = true;
+                    System.out.println("Now adding: " + (row-1) + ", " + (col+1));
                 }
                 // down
                 if (row + 1 < blocks.length && !blocks[row+1][col].isRevealed){
                     q.add(row + 1);
                     q.add(col);
-                    //System.out.println("Now adding: " + (row+1) + ", " + (col));
+                    blocks[row+1][col].isRevealed = true;
+                    System.out.println("Now adding: " + (row+1) + ", " + (col));
                 }
                 // down left
                 if (row + 1 < blocks.length && col - 1 >= 0 && !blocks[row + 1][col - 1].isRevealed) {
                     q.add(row + 1);
                     q.add(col - 1);
-                    //System.out.println("Now adding: " + (row+1) + ", " + (col-1));
+                    blocks[row+1][col-1].isRevealed = true;
+                    System.out.println("Now adding: " + (row+1) + ", " + (col-1));
                 }
                 // down right
                 if (row + 1 < blocks.length && col + 1 < blocks[row].length && !blocks[row+1][col + 1].isRevealed) {
                     q.add(row + 1);
                     q.add(col + 1);
-                    //System.out.println("Now adding: " + (row+1) + ", " + (col+1));
+                    blocks[row+1][col+1].isRevealed = true;
+                    System.out.println("Now adding: " + (row+1) + ", " + (col+1));
                 }
                 // left
                 if (col - 1 >= 0 && !blocks[row][col - 1].isRevealed){
                     q.add(row);
                     q.add(col - 1);
-                    //System.out.println("Now adding: " + (row) + ", " + (col-1));
+                    blocks[row][col-1].isRevealed = true;
+                    System.out.println("Now adding: " + (row) + ", " + (col-1));
                 }
                 // right
                 if (col + 1 < blocks[row].length && !blocks[row][col + 1].isRevealed){
                     q.add(row);
                     q.add(col + 1);
-                    //System.out.println("Now adding: " + (row) + ", " + (col+1));
+                    blocks[row][col+1].isRevealed = true;
+                    System.out.println("Now adding: " + (row) + ", " + (col+1));
                 }
             }
         }

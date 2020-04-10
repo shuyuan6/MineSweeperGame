@@ -1,8 +1,10 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
@@ -25,22 +27,40 @@ public class MineGameGui extends Application {
 
     @Override
     public void start(Stage stage) {
-        // create the button to show won or lost
-        Label lblstatus = new Label();
-        lblstatus.setText("Come on!");
 
         MineGameEngine game = new MineGameEngine();
         game.init(20, 20, 5);
 
-        //create the button to show mine count
-        Label lblcount = new Label();
-        lblcount.setText("There are " + game.minesLeft + " mines left!");
+        // create a label to show won or lost
+        Label statusLabel = new Label();
+        statusLabel.setText("Come on!");
 
-        //Add the button to a layout pane
-        BorderPane paneprimary =  new BorderPane();
-        BorderPane panesecondary = new BorderPane();
+        // create a label to show mine count
+        Label countLabel = new Label();
+        countLabel.setText("There are " + game.minesLeft + " mines left!");
+        countLabel.setPrefWidth(300);
+
+        // create a button to restart a game
+        Button restart = new Button();
+        restart.setText("Restart the game!");
+
+        //Add the labels and button to a layout pane
+        Pane mineField = new Pane();
+        mineField.setPrefSize(600, 600);
 
 
+        HBox hBox = new HBox(countLabel, restart);
+        //hBox.setPrefHeight(100);
+
+        VBox vBox = new VBox();
+        vBox.getChildren().add(hBox);
+        vBox.getChildren().add(mineField);
+        vBox.getChildren().add(statusLabel);
+
+        Scene scene = new Scene(vBox, 600, 700);
+        stage.setTitle("MineGame");
+        stage.setScene(scene);
+        stage.show();
 
 
 
@@ -67,12 +87,6 @@ public class MineGameGui extends Application {
 
         stage.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
 
-        Group group = new Group();
-        Scene scene = new Scene(paneprimary, 600, 700);
-        stage.setTitle("MineGame");
-        stage.setScene(scene);
-        stage.show();
-
         // MineGame game = new MineGame();
         // game.init(20, 20, 30);
 
@@ -91,14 +105,10 @@ public class MineGameGui extends Application {
                 text.toFront();
                 texts[i][j] = text;
 
-                panesecondary.getChildren().add(rectangle);
-                panesecondary.getChildren().add(text);
+                mineField.getChildren().add(rectangle);
+                mineField.getChildren().add(text);
             }
         }
-
-        paneprimary.setTop(lblcount);
-        paneprimary.setBottom(lblstatus);
-        paneprimary.setCenter(panesecondary);
 
         AnimationTimer animationTimer = new AnimationTimer() {
             public void handle(long currentNanoTime) {
@@ -126,9 +136,9 @@ public class MineGameGui extends Application {
                 }
 
                 if (game.minesLeft == 1) {
-                    lblcount.setText("There is 1 mine left!");
+                    countLabel.setText("There is 1 mine left!");
                 } else {
-                    lblcount.setText("There are " + game.minesLeft + " mines left!");
+                    countLabel.setText("There are " + game.minesLeft + " mines left!");
                 }
 
                 if (gameOver) {
@@ -138,7 +148,7 @@ public class MineGameGui extends Application {
                 if (!mouseClickProcessed) {
                     mouseClickProcessed = true;
                     int c = (int) (lastMouseClickedPositionX / squareSize);
-                    int r = (int) ((lastMouseClickedPositionY - lblcount.getHeight()) / squareSize);
+                    int r = (int) ((lastMouseClickedPositionY - hBox.getHeight()) / squareSize);
                     System.out.println("c: " + c + ", r: " + r);
                     if (lastMouseClickedButton == 0) {
                         game.flip(r, c);
@@ -153,11 +163,11 @@ public class MineGameGui extends Application {
                     if (ret == 1) {
                         System.out.println("You won!!");
                         gameOver = true;
-                        lblstatus.setText("You won!");
+                        statusLabel.setText("You won!");
                     } else if (ret == 2) {
                         System.out.println("You lost!!");
                         gameOver = true;
-                        lblstatus.setText("You lost!");
+                        statusLabel.setText("You lost!");
                     }
                 }
             }
