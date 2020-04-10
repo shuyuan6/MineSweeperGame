@@ -24,35 +24,62 @@ public class MineGameGui extends Application {
     boolean mouseClickProcessed = true;
     final double squareSize = 30d;
     boolean gameOver = false;
+    MineGameEngine.Block[][] blocks;
+
+    Rectangle[][] rectangles;
+    Text[][] texts;
+    MineGameEngine game;
+    Pane mineField = new Pane();
+    Label statusLabel = new Label();
+    Label countLabel = new Label();
+    Button restart = new Button();
+    HBox hBox = new HBox(countLabel, restart);
+    VBox vBox = new VBox();
+
+    public void initGame() {
+        statusLabel.setText("Come on!");
+        gameOver = false;
+        game = new MineGameEngine();
+        game.init(20, 20, 5);
+        blocks = game.getState();
+        rectangles = new Rectangle[blocks.length][blocks[0].length];
+        texts = new Text[blocks.length][blocks[0].length];
+
+        for (int i = 0; i < blocks.length; i++) {
+            for (int j = 0; j < blocks[i].length; j++) {
+                Rectangle rectangle = new Rectangle(squareSize * j, squareSize * i, squareSize, squareSize);
+                rectangles[i][j] = rectangle;
+
+                Text text = new Text();
+                text.setX((squareSize * j + 12));
+                text.setY((squareSize * i + 20));
+                text.toFront();
+                texts[i][j] = text;
+
+                mineField.getChildren().add(rectangle);
+                mineField.getChildren().add(text);
+            }
+        }
+    }
 
     @Override
     public void start(Stage stage) {
 
-        MineGameEngine game = new MineGameEngine();
-        game.init(20, 20, 5);
+        mineField.setPrefSize(600, 600);
 
-        // create a label to show won or lost
-        Label statusLabel = new Label();
-        statusLabel.setText("Come on!");
+        initGame();
 
         // create a label to show mine count
-        Label countLabel = new Label();
         countLabel.setText("There are " + game.minesLeft + " mines left!");
         countLabel.setPrefWidth(300);
 
         // create a button to restart a game
-        Button restart = new Button();
         restart.setText("Restart the game!");
+        restart.setOnAction(event ->
+        {
+            initGame();
+        });
 
-        //Add the labels and button to a layout pane
-        Pane mineField = new Pane();
-        mineField.setPrefSize(600, 600);
-
-
-        HBox hBox = new HBox(countLabel, restart);
-        //hBox.setPrefHeight(100);
-
-        VBox vBox = new VBox();
         vBox.getChildren().add(hBox);
         vBox.getChildren().add(mineField);
         vBox.getChildren().add(statusLabel);
@@ -61,8 +88,6 @@ public class MineGameGui extends Application {
         stage.setTitle("MineGame");
         stage.setScene(scene);
         stage.show();
-
-
 
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             @Override
@@ -86,29 +111,6 @@ public class MineGameGui extends Application {
         };
 
         stage.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
-
-        // MineGame game = new MineGame();
-        // game.init(20, 20, 30);
-
-        MineGameEngine.Block[][] blocks = game.getState();
-        Rectangle[][] rectangles = new Rectangle[blocks.length][blocks[0].length];
-        Text[][] texts = new Text[blocks.length][blocks[0].length];
-
-        for (int i = 0; i < blocks.length; i++) {
-            for (int j = 0; j < blocks[i].length; j++) {
-                Rectangle rectangle = new Rectangle(squareSize * j, squareSize * i, squareSize, squareSize);
-                rectangles[i][j] = rectangle;
-
-                Text text = new Text();
-                text.setX((squareSize * j + 12));
-                text.setY((squareSize * i + 20));
-                text.toFront();
-                texts[i][j] = text;
-
-                mineField.getChildren().add(rectangle);
-                mineField.getChildren().add(text);
-            }
-        }
 
         AnimationTimer animationTimer = new AnimationTimer() {
             public void handle(long currentNanoTime) {
@@ -173,6 +175,7 @@ public class MineGameGui extends Application {
             }
         };
         animationTimer.start();
+        System.out.println("Start method reaches end.");
     }
 
     public static void main(String[] args) {

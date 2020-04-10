@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2b8b4a63-11de-4ed7-a094-51e89090cc27" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameEngine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameEngine.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameGui$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameGui$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameGui$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameGui$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameGui.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MineGameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MineGameEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MineGameGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MineGameGui.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,6 +15,13 @@
   </component>
   <component name="FavoritesManager">
     <favorites_list name="MineSweeperGame" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,6 +36,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunManager">
     <configuration name="MineGameGui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -72,25 +78,29 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1358" height="199" key="GridCell.Tab.0.bottom" timestamp="1586479497925">
+    <state width="1358" height="162" key="GridCell.Tab.0.bottom" timestamp="1586554939972">
       <screen x="0" y="23" width="1440" height="825" />
     </state>
-    <state width="1358" height="199" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1586479497925" />
+    <state width="1358" height="162" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1586554939972" />
     <state width="1358" height="199" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1586478275297" />
-    <state width="1358" height="199" key="GridCell.Tab.0.center" timestamp="1586479497924">
+    <state width="1358" height="162" key="GridCell.Tab.0.center" timestamp="1586554939971">
       <screen x="0" y="23" width="1440" height="825" />
     </state>
-    <state width="1358" height="199" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1586479497924" />
+    <state width="1358" height="162" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1586554939971" />
     <state width="1358" height="199" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1586478275295" />
-    <state width="1358" height="199" key="GridCell.Tab.0.left" timestamp="1586479497924">
+    <state width="1358" height="162" key="GridCell.Tab.0.left" timestamp="1586554939971">
       <screen x="0" y="23" width="1440" height="825" />
     </state>
-    <state width="1358" height="199" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1586479497924" />
+    <state width="1358" height="162" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1586554939971" />
     <state width="1358" height="199" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1586478275294" />
-    <state width="1358" height="199" key="GridCell.Tab.0.right" timestamp="1586479497924">
+    <state width="1358" height="162" key="GridCell.Tab.0.right" timestamp="1586554939972">
       <screen x="0" y="23" width="1440" height="825" />
     </state>
-    <state width="1358" height="199" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1586479497924" />
+    <state width="1358" height="162" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1586554939972" />
     <state width="1358" height="199" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1586478275296" />
+    <state x="373" y="172" width="670" height="676" key="search.everywhere.popup" timestamp="1586554661819">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state x="373" y="172" width="670" height="676" key="search.everywhere.popup/0.23.1440.825@0.23.1440.825" timestamp="1586554661819" />
   </component>
 </project>
