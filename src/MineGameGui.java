@@ -15,6 +15,10 @@ import javafx.scene.shape.Rectangle;
 
 import javafx.scene.input.MouseEvent;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class MineGameGui extends Application {
 
     double lastMouseClickedPositionX = 0;
@@ -23,7 +27,7 @@ public class MineGameGui extends Application {
     int lastMouseClickedButton = 0;
     boolean mouseClickProcessed = true;
     final double squareSize = 30d;
-    boolean gameOver = false;
+    static boolean gameOver = false;
     MineGameEngine.Block[][] blocks;
 
     Rectangle[][] rectangles;
@@ -32,11 +36,15 @@ public class MineGameGui extends Application {
     Pane mineField = new Pane();
     Label statusLabel = new Label();
     Label countLabel = new Label();
+    Label timerLabel = new Label();
     Button restart = new Button();
-    HBox hBox = new HBox(countLabel, restart);
+    HBox hBox = new HBox(countLabel, restart, timerLabel);
     VBox vBox = new VBox();
+    static int remainingTime = 10;
 
     public void initGame() {
+        remainingTime = 10;
+        timerLabel.setText("Remaining time: " + remainingTime);
         statusLabel.setText("Come on!");
         gameOver = false;
         game = new MineGameEngine();
@@ -143,6 +151,8 @@ public class MineGameGui extends Application {
                     countLabel.setText("There are " + game.minesLeft + " mines left!");
                 }
 
+                timerLabel.setText("Remaining time: " + String.valueOf(remainingTime));
+
                 if (gameOver) {
                     return;
                 }
@@ -172,6 +182,10 @@ public class MineGameGui extends Application {
                         statusLabel.setText("You lost!");
                     }
                 }
+                if (remainingTime <= 0) {
+                    gameOver = true;
+                    statusLabel.setText("Time is over, you lost!");
+                }
             }
         };
         animationTimer.start();
@@ -179,6 +193,23 @@ public class MineGameGui extends Application {
     }
 
     public static void main(String[] args) {
+        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+
+        Runnable run = new Runnable() {
+            @Override
+            public void run() {
+                if (!gameOver) {
+                    remainingTime --;
+                }
+            }
+        };
+
+        executorService.scheduleAtFixedRate(
+                run,
+                0,
+                1,
+                TimeUnit.SECONDS);
+
         launch(args);
     }
 

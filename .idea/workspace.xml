@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="2b8b4a63-11de-4ed7-a094-51e89090cc27" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameEngine$Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameEngine$Block.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameEngine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameEngine.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameGui$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameGui$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameGui$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameGui$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeperGame/MineGameGui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MineGameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MineGameEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MineGameGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MineGameGui.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +41,14 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MineGameGui">
+    <configuration name="MineGameEngine" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MineGameEngine" />
+      <module name="MineSweeperGame" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MineGameGui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MineGameGui" />
       <module name="MineSweeperGame" />
@@ -49,6 +59,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MineGameGui" />
+        <item itemvalue="Application.MineGameEngine" />
       </list>
     </recent_temporary>
   </component>
@@ -78,25 +89,25 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1358" height="162" key="GridCell.Tab.0.bottom" timestamp="1586554939972">
+    <state width="1358" height="162" key="GridCell.Tab.0.bottom" timestamp="1586580098448">
       <screen x="0" y="23" width="1440" height="825" />
     </state>
-    <state width="1358" height="162" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1586554939972" />
+    <state width="1358" height="162" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1586580098448" />
     <state width="1358" height="199" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1586478275297" />
-    <state width="1358" height="162" key="GridCell.Tab.0.center" timestamp="1586554939971">
+    <state width="1358" height="162" key="GridCell.Tab.0.center" timestamp="1586580098446">
       <screen x="0" y="23" width="1440" height="825" />
     </state>
-    <state width="1358" height="162" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1586554939971" />
+    <state width="1358" height="162" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1586580098446" />
     <state width="1358" height="199" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1586478275295" />
-    <state width="1358" height="162" key="GridCell.Tab.0.left" timestamp="1586554939971">
+    <state width="1358" height="162" key="GridCell.Tab.0.left" timestamp="1586580098445">
       <screen x="0" y="23" width="1440" height="825" />
     </state>
-    <state width="1358" height="162" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1586554939971" />
+    <state width="1358" height="162" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1586580098445" />
     <state width="1358" height="199" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1586478275294" />
-    <state width="1358" height="162" key="GridCell.Tab.0.right" timestamp="1586554939972">
+    <state width="1358" height="162" key="GridCell.Tab.0.right" timestamp="1586580098447">
       <screen x="0" y="23" width="1440" height="825" />
     </state>
-    <state width="1358" height="162" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1586554939972" />
+    <state width="1358" height="162" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1586580098447" />
     <state width="1358" height="199" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1586478275296" />
     <state x="373" y="172" width="670" height="676" key="search.everywhere.popup" timestamp="1586554661819">
       <screen x="0" y="23" width="1440" height="825" />
