@@ -11,9 +11,43 @@ import java.util.concurrent.TimeUnit;
 
 public class MineGameEngine {
 
+    static enum Type {
+        MINE(-1),
+        ZERO(0),
+        ONE(1),
+        TWO(2),
+        THREE(3),
+        FOUR(4),
+        FIVE(5),
+        SIX(6),
+        SEVEN(7),
+        EIGHT(8);
+
+        private int value;
+        private static Map map = new HashMap<>();
+
+        private Type(int value) {
+            this.value = value;
+        }
+
+        static {
+            for (Type type : Type.values()) {
+                map.put(type.value, type);
+            }
+        }
+
+        public static Type valueOf(int type) {
+            return (Type) map.get(type);
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
+
     static class Block {
         // -1 means it is mine; 0~8 means there are the said number of mines neighboring
-        public int type;
+        public Type type;
         public boolean isRevealed;
         public boolean isMarkedAsMine;
     }
@@ -34,7 +68,7 @@ public class MineGameEngine {
             for (int j = 0; j < cols; j++) {
                 blocks[i][j] = new Block();
                 blocks[i][j].isRevealed = false;
-                blocks[i][j].type = 0;
+                blocks[i][j].type = Type.ZERO;
                 blocks[i][j].isMarkedAsMine = false;
             }
         }
@@ -44,46 +78,46 @@ public class MineGameEngine {
         while (count < numMines) {
             int row = r.nextInt(rows);
             int col = r.nextInt(cols);
-            if (blocks[row][col].type != -1) {
-                blocks[row][col].type = -1;
+            if (blocks[row][col].type != Type.MINE) {
+                blocks[row][col].type = Type.MINE;
                 count ++;
             }
         }
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (blocks[i][j].type != -1) {
+                if (blocks[i][j].type != Type.MINE) {
                     // top left
-                    if (i-1 >= 0 && j-1 >= 0 && blocks[i-1][j-1].type == -1) {
-                        blocks[i][j].type++;
+                    if (i-1 >= 0 && j-1 >= 0 && blocks[i-1][j-1].type == Type.MINE) {
+                        blocks[i][j].type = Type.valueOf(blocks[i][j].type.getValue() + 1);
                     }
                     // top
-                    if (i-1 >= 0 && blocks[i-1][j].type == -1) {
-                        blocks[i][j].type++;
+                    if (i-1 >= 0 && blocks[i-1][j].type == Type.MINE) {
+                        blocks[i][j].type = Type.valueOf(blocks[i][j].type.getValue() + 1);
                     }
                     // top right
-                    if (i-1 >= 0 && j+1 < cols && blocks[i-1][j+1].type == -1) {
-                        blocks[i][j].type++;
+                    if (i-1 >= 0 && j+1 < cols && blocks[i-1][j+1].type == Type.MINE) {
+                        blocks[i][j].type = Type.valueOf(blocks[i][j].type.getValue() + 1);
                     }
                     // right
-                    if (j+1 < cols && blocks[i][j+1].type == -1) {
-                        blocks[i][j].type++;
+                    if (j+1 < cols && blocks[i][j+1].type == Type.MINE) {
+                        blocks[i][j].type = Type.valueOf(blocks[i][j].type.getValue() + 1);
                     }
                     // bottom right
-                    if (i+1 < rows && j+1 < cols && blocks[i+1][j+1].type == -1) {
-                        blocks[i][j].type++;
+                    if (i+1 < rows && j+1 < cols && blocks[i+1][j+1].type == Type.MINE) {
+                        blocks[i][j].type = Type.valueOf(blocks[i][j].type.getValue() + 1);
                     }
                     // bottom
-                    if (i+1 < rows && blocks[i+1][j].type == -1) {
-                        blocks[i][j].type++;
+                    if (i+1 < rows && blocks[i+1][j].type == Type.MINE) {
+                        blocks[i][j].type = Type.valueOf(blocks[i][j].type.getValue() + 1);
                     }
                     // bottom left
-                    if (i+1 < rows && j-1 >= 0 && blocks[i+1][j-1].type ==-1) {
-                        blocks[i][j].type++;
+                    if (i+1 < rows && j-1 >= 0 && blocks[i+1][j-1].type == Type.MINE) {
+                        blocks[i][j].type = Type.valueOf(blocks[i][j].type.getValue() + 1);
                     }
                     // left
-                    if (j-1 >= 0 && blocks[i][j-1].type == -1) {
-                        blocks[i][j].type++;
+                    if (j-1 >= 0 && blocks[i][j-1].type == Type.MINE) {
+                        blocks[i][j].type = Type.valueOf(blocks[i][j].type.getValue() + 1);
                     }
                 }
             }
@@ -93,9 +127,9 @@ public class MineGameEngine {
     public void print(){
         for (int i = 0; i < blocks.length; i++) {
             for (int j = 0; j < blocks[i].length; j++){
-                if (blocks[i][j].type == -1) {
+                if (blocks[i][j].type == Type.MINE) {
                     System.out.print("x ");
-                } else if (blocks[i][j].type == 0) {
+                } else if (blocks[i][j].type == Type.ZERO) {
                     System.out.print("  ");
                 } else {
                     System.out.print(blocks[i][j].type + " ");
@@ -142,10 +176,10 @@ public class MineGameEngine {
         int markedMines = 0;
         for (int i = 0; i < blocks.length; i++) {
             for (int j = 0; j < blocks[i].length; j++) {
-                if (blocks[i][j].type == -1 && blocks[i][j].isRevealed) {
+                if (blocks[i][j].type == Type.MINE && blocks[i][j].isRevealed) {
                     return 2;
                 }
-                if (blocks[i][j].type == -1 && blocks[i][j].isMarkedAsMine){
+                if (blocks[i][j].type == Type.MINE && blocks[i][j].isMarkedAsMine){
                     markedMines++;
                 }
             }
@@ -160,7 +194,7 @@ public class MineGameEngine {
         // try to reveal a block; if it is mine it will lead to game over as lost
 
     public void flip(int r, int c) {
-        if (blocks[r][c].type != 0) {
+        if (blocks[r][c].type != Type.ZERO) {
             blocks[r][c].isRevealed = true;
             System.out.println( r + ", " + c + "is marked as revealed");
             return;
@@ -177,7 +211,7 @@ public class MineGameEngine {
             int col = q.remove();
 
 
-            if (blocks[row][col].type == 0) {
+            if (blocks[row][col].type == Type.ZERO) {
                 // up
                 if (row - 1 >= 0 && !blocks[row-1][col].isRevealed){
                     q.add(row - 1);

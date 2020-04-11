@@ -122,7 +122,7 @@ public class MineGameGui extends Application {
 
         AnimationTimer animationTimer = new AnimationTimer() {
             public void handle(long currentNanoTime) {
-                //System.out.println("animationTimer invoked at " + currentNanoTime);
+                // System.out.println("animationTimer invoked at " + currentNanoTime);
                 for (int i = 0; i < blocks.length; i++) {
                     for (int j = 0; j < blocks[i].length; j++) {
                         MineGameEngine.Block curr = blocks[i][j];
@@ -133,12 +133,12 @@ public class MineGameGui extends Application {
                             rectangle.setFill(Color.GRAY);
 
                         } else {
-                            if (curr.type == -1) {
+                            if (curr.type == MineGameEngine.Type.MINE) {
                                 rectangle.setFill(Color.RED);
                             } else {
                                 rectangle.setFill(Color.GREEN);
-                                if (curr.type > 0) {
-                                    texts[i][j].setText(String.valueOf(curr.type));
+                                if (curr.type.getValue() > 0) {
+                                    texts[i][j].setText(String.valueOf(curr.type.getValue()));
                                 }
                             }
                         }
