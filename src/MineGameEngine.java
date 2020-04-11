@@ -2,16 +2,16 @@ import java.util.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class MineGameEngine {
 
-    static enum Type {
+    enum GameStatus {
+        NOTOVER,
+        WON,
+        LOST;
+    }
+
+    enum Type {
         MINE(-1),
         ZERO(0),
         ONE(1),
@@ -46,7 +46,6 @@ public class MineGameEngine {
     }
 
     static class Block {
-        // -1 means it is mine; 0~8 means there are the said number of mines neighboring
         public Type type;
         public boolean isRevealed;
         public boolean isMarkedAsMine;
@@ -155,7 +154,6 @@ public class MineGameEngine {
         }
     }
 
-
     public void markAsMine(int r, int col) {
         if (!blocks[r][col].isRevealed) {
             blocks[r][col].isMarkedAsMine = true;
@@ -170,14 +168,12 @@ public class MineGameEngine {
         }
     }
 
-        // returns 0 to indicate not over; 1 to indicate won; 2 to indicate lost;
-
-    public int gameOver() {
+    public GameStatus getGameStatus() {
         int markedMines = 0;
         for (int i = 0; i < blocks.length; i++) {
             for (int j = 0; j < blocks[i].length; j++) {
                 if (blocks[i][j].type == Type.MINE && blocks[i][j].isRevealed) {
-                    return 2;
+                    return GameStatus.LOST;
                 }
                 if (blocks[i][j].type == Type.MINE && blocks[i][j].isMarkedAsMine){
                     markedMines++;
@@ -185,14 +181,13 @@ public class MineGameEngine {
             }
         }
         if (markedMines == this.numMines) {
-            return 1;
+            return GameStatus.WON;
         }
 
-        return 0;
+        return GameStatus.NOTOVER;
     }
 
         // try to reveal a block; if it is mine it will lead to game over as lost
-
     public void flip(int r, int c) {
         if (blocks[r][c].type != Type.ZERO) {
             blocks[r][c].isRevealed = true;
@@ -316,12 +311,12 @@ public class MineGameEngine {
             } else {
                 bla.removeMarkAsMine(r, c);
             }
-            int result = bla.gameOver();
-            if (result == 1) {
+            GameStatus result = bla.getGameStatus();
+            if (result == GameStatus.WON) {
                 System.out.println("You won!");
                 break;
             }
-            if (result == 2) {
+            if (result == GameStatus.LOST) {
                 System.out.println("You lost!");
                 break;
             }

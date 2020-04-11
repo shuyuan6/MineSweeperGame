@@ -1,8 +1,6 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -40,10 +38,10 @@ public class MineGameGui extends Application {
     Button restart = new Button();
     HBox hBox = new HBox(countLabel, restart, timerLabel);
     VBox vBox = new VBox();
-    static int remainingTime = 10;
+    static int remainingTime = 50;
 
     public void initGame() {
-        remainingTime = 10;
+        remainingTime = 50;
         timerLabel.setText("Remaining time: " + remainingTime);
         statusLabel.setText("Come on!");
         gameOver = false;
@@ -171,12 +169,12 @@ public class MineGameGui extends Application {
                             game.markAsMine(r, c);
                         }
                     }
-                    int ret = game.gameOver();
-                    if (ret == 1) {
+                    MineGameEngine.GameStatus ret = game.getGameStatus();
+                    if (ret == MineGameEngine.GameStatus.WON) {
                         System.out.println("You won!!");
                         gameOver = true;
                         statusLabel.setText("You won!");
-                    } else if (ret == 2) {
+                    } else if (ret == MineGameEngine.GameStatus.LOST) {
                         System.out.println("You lost!!");
                         gameOver = true;
                         statusLabel.setText("You lost!");
